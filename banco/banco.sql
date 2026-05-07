@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `banco`.`usuarios` (
   `usuarios_nome` VARCHAR(255) NOT NULL,
   `usuarios_idade` DATE NOT NULL,
   `usuarios_cpf` CHAR(15) NOT NULL,
+  `usuarios_img` VARCHAR(255) NULL,
   `usuarios_sexo` VARCHAR(45) NOT NULL,
   `usuarios_email` VARCHAR(255) NOT NULL,
   `usuarios_senha` VARCHAR(255) NOT NULL,
@@ -59,7 +60,6 @@ CREATE TABLE IF NOT EXISTS `banco`.`servico` (
   `servico_id` INT NOT NULL AUTO_INCREMENT,
   `servico_nome` VARCHAR(100) NOT NULL,
   `servico_classe` VARCHAR(45) NOT NULL,
-  `servico_documento` VARCHAR(255) NULL,
   `servico_descricao` VARCHAR(255) NULL,
   PRIMARY KEY (`servico_id`))
 ENGINE = InnoDB
@@ -73,7 +73,6 @@ CREATE TABLE IF NOT EXISTS `banco`.`mensagem` (
   `mensagem_id` INT NOT NULL AUTO_INCREMENT,
   `mensagem_texto` VARCHAR(255) NOT NULL,
   `mensagem_hora` TIMESTAMP NOT NULL,
-  `mensagem_img` VARCHAR(255) NULL,
   `mensagem_usuarios_id` INT NOT NULL,
   PRIMARY KEY (`mensagem_id`),
   INDEX `fk_mensagem_usuarios1_idx` (`mensagem_usuarios_id` ASC) VISIBLE,
