@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `banco`.`usuarios` (
   `usuarios_nome` VARCHAR(255) NOT NULL,
   `usuarios_idade` DATE NOT NULL,
   `usuarios_cpf` CHAR(15) NOT NULL,
+  `usuarios_img` VARCHAR(255) NULL,
   `usuarios_sexo` VARCHAR(45) NOT NULL,
   `usuarios_email` VARCHAR(255) NOT NULL,
   `usuarios_senha` VARCHAR(255) NOT NULL,
