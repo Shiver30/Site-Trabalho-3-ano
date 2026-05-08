@@ -9,19 +9,19 @@
 
     <h1>Cadastro</h1>
 
-    <form action="funcao.php" method="post" onsubmit="return validarSenha()">
+    <form action="cadastro_endereco.php" method="post" onsubmit="return validarSenha()"  enctype="multipart/form-data">
 
     <p>Nome:</p>
-    <input type="text" placeholder="Digite seu nome completo"><br>
+    <input type="text" placeholder="Digite seu nome completo" name="nome" required><br>
 
     <p>Email:</p>
-    <input type="text" placeholder="Digite seu email"><br>
+    <input type="email" placeholder="Digite seu email" name="email" required><br>
 
     <p>Senha:</p>
-    <input type="text" placeholder="Digite sua senha" id="senha"><br>
+    <input type="text" placeholder="Digite sua senha" id="senha" name="senha" required><br>
 
     <p>Confirme sua senha:</p>
-    <input type="text" placeholder="Confirme sua senha" id="senhaConfirmacao"><br>
+    <input type="text" placeholder="Confirme sua senha" id="senhaConfirmacao" name="senhaConfirmacao" required><br>
 
     <script>
     function validarSenha() {
@@ -40,13 +40,13 @@
     <h3>Dados Pessoais:</h3>
 
     <p>Data de nascimento:</p>
-    <input type="text" placeholder="Digite sua data de nascimento"><br>
+    <input type="text" placeholder="Digite sua data de nascimento" name="data_nascimento" required><br>
 
     <p>CPF:</p>
-    <input type="text" placeholder="Digite seu CPF"><br>
+    <input type="text" placeholder="Digite seu CPF" name="cpf" required><br>
 
     <p>Sexo:</p>
-    <select name="sexo" id="sexo">
+    <select name="sexo" id="sexo" required>
         <option value="m">Masculino</option>
         <option value="f">Feminino</option>
         <option value="o">Outro</option>
@@ -54,7 +54,7 @@
     <br>
 
     <p>foto de perfil:</p>
-    <input type="file" name="foto" id="foto">
+    <input type="file" name="foto" id="foto" accept="image/*">
     <br><br>
 
     </form>
