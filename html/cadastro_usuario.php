@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<h1>Cadastro</h1>
 <body>
-    <form action="">
+
+    <h1>Cadastro</h1>
+
+    <form action="funcao.php" method="post" onsubmit="return validarSenha()">
 
     <p>Nome:</p>
-    <input type="text" placeholder="Digite seu nome"><br>
+    <input type="text" placeholder="Digite seu nome completo"><br>
 
     <p>Email:</p>
     <input type="text" placeholder="Digite seu email"><br>
@@ -50,6 +52,10 @@
         <option value="o">Outro</option>
     </select>
     <br>
+
+    <p>foto de perfil:</p>
+    <input type="file" name="foto" id="foto">
+    <br><br>
 
     </form>
 </body>
