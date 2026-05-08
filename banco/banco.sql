@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `banco`.`usuarios` (
   `usuarios_sexo` VARCHAR(45) NOT NULL,
   `usuarios_email` VARCHAR(255) NOT NULL,
   `usuarios_senha` VARCHAR(255) NOT NULL,
-  `usuario_img` VARCHAR(255) NULL,
+  `usuario_img` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`usuarios_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
@@ -53,22 +53,53 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `banco`.`estado`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `banco`.`estado` (
+  `estado_id` INT NOT NULL AUTO_INCREMENT,
+  `estado_nome` VARCHAR(45) NOT NULL,
+  `estado_uf` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`estado_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco`.`cidade`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `banco`.`cidade` (
+  `cidade_id` INT NOT NULL AUTO_INCREMENT,
+  `cidade_nome` VARCHAR(45) NOT NULL,
+  `estado_estado_id` INT NOT NULL,
+  PRIMARY KEY (`cidade_id`),
+  INDEX `fk_cidade_estado1_idx` (`estado_estado_id` ASC) VISIBLE,
+  CONSTRAINT `fk_cidade_estado1`
+    FOREIGN KEY (`estado_estado_id`)
+    REFERENCES `banco`.`estado` (`estado_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `banco`.`endereco`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `banco`.`endereco` (
   `endereco-id` INT NOT NULL AUTO_INCREMENT,
-  `endereco_estado` VARCHAR(90) NOT NULL,
-  `endereco_cidade` VARCHAR(250) NOT NULL,
-  `endereco_rua` VARCHAR(150) NOT NULL,
-  `endereco_bairro` VARCHAR(150) NOT NULL,
-  `endereco_moradia` VARCHAR(45) NOT NULL,
-  `endereco_numero` VARCHAR(45) NULL DEFAULT NULL,
   `endereco_usuarios_id` INT NOT NULL,
+  `cidade_cidade_id` INT NOT NULL,
   PRIMARY KEY (`endereco-id`),
   INDEX `fk_endereco_usuarios_idx` (`endereco_usuarios_id` ASC) VISIBLE,
+  INDEX `fk_endereco_cidade1_idx` (`cidade_cidade_id` ASC) VISIBLE,
   CONSTRAINT `fk_endereco_usuarios`
     FOREIGN KEY (`endereco_usuarios_id`)
-    REFERENCES `banco`.`usuarios` (`usuarios_id`))
+    REFERENCES `banco`.`usuarios` (`usuarios_id`),
+  CONSTRAINT `fk_endereco_cidade1`
+    FOREIGN KEY (`cidade_cidade_id`)
+    REFERENCES `banco`.`cidade` (`cidade_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -121,6 +152,19 @@ CREATE TABLE IF NOT EXISTS `banco`.`usn` (
     REFERENCES `banco`.`usuarios` (`usuarios_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+USE `banco` ;
+
+-- -----------------------------------------------------
+-- Placeholder table for view `banco`.`view1`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `banco`.`view1` (`id` INT);
+
+-- -----------------------------------------------------
+-- View `banco`.`view1`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco`.`view1`;
+USE `banco`;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

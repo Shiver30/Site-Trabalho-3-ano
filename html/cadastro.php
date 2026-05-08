@@ -51,6 +51,7 @@
     </select>
     <br>
 
+    <button type="submit">Prosseguir Cadastro</button>
     </form>
 </body>
 </html>
