@@ -35,7 +35,8 @@ web:
 volumes:
   # Declaração do volume nomeado para os dados do MySQL
 db_data:
-db:
+
+bd:
       image: mysql:8.0
       container_name:  "mysql_lab"
       restart: always
