@@ -35,15 +35,3 @@ services:
 volumes:
   # Declaração do volume nomeado para os dados do MySQL
 db_data:
-
-  bd:
-        image: mysql:8.0
-        container_name:  "mysql_lab"
-        restart: always
-        volumes:
-            - ./banco/banco.sql:/docker-entrypoint-initdb.d/banco.sql
-        environment:
-            - MYSQL_ROOT_PASSWORD: 123
-            - MYSQL_DATABASE: banco
-        ports:
-            - 3307:3306
