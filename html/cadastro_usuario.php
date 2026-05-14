@@ -9,7 +9,7 @@
 
     <h1>Cadastro</h1>
 
-    <form action="cadastro_endereco.php" method="post" onsubmit="return validarSenha()"  enctype="multipart/form-data">
+    <form action= "funcoes/funcoes.php" method="post" onsubmit="return validarSenha()"  enctype="multipart/form-data">
 
     <p>Nome:</p>
     <input type="text" placeholder="Digite seu nome completo" name="nome" required><br>
@@ -51,16 +51,62 @@
         <option value="f">Feminino</option>
         <option value="o">Outro</option>
     </select>
-    <br>
+    <br><br>
 
-<<<<<<< HEAD:html/cadastro.php
-    <button type="submit">Prosseguir Cadastro</button>
-=======
     <p>foto de perfil:</p>
     <input type="file" name="foto" id="foto" accept="image/*">
     <br><br>
 
->>>>>>> abbacd125f0bc2c429bc38e7509899bac26b1693:html/cadastro_usuario.php
+    <h3>Endereço:</h3>
+
+    <p>Estado:</p>
+    <select name="estado" id="estado" required>
+        <option value="">Selecione um estado</option>
+        <!-- As opções de estados serão preenchidas dinamicamente -->
+    <script>
+    function listar($conexao) {
+    $sql = "SELECT * FROM estado ORDER BY estado_nome";
+    $comando = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+    $lista_estados = [];
+    while ($estado = mysqli_fetch_assoc($resultado)) {
+        $lista_estados[] = $estado;
+    }
+    mysqli_stmt_close($comando);
+    return $lista_estados;
+    }
+    </script>
+
+    </select>
+    <br><br>
+
+    <p>Cidade:</p>
+    <select name="cidade" id="cidade" required>
+        <option value="">Selecione uma cidade</option>
+        <!-- As opções de cidades serão preenchidas dinamicamente -->
+
+    <script>
+    function listarCidades($conexao, $estado_id) {
+    $sql = "SELECT * FROM cidade WHERE estado_id = ? ORDER BY cidade_nome";
+    $comando = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($comando, 'i', $estado_id);
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+    $lista_cidades = [];
+    while ($cidade = mysqli_fetch_assoc($resultado)) {
+        $lista_cidades[] = $cidade;
+    }
+    mysqli_stmt_close($comando);
+    return $lista_cidades;
+    }
+    </script>
+    </select>
+
+
+    <button type="submit">Prosseguir Cadastro</button>
+
+
     </form>
 </body>
 </html>
